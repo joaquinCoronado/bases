@@ -44,7 +44,7 @@ export PATH=$PATH:{ the path of your build }/bases
 export PATH=$PATH:/Users/JoaquinCoronado/GoProjects/bases
 ```
 
-Then run the `base` command any place at your terminal
+Then run the `bases` command any place at your terminal
 ```
 -> bases convert 101 -b 2 --to 10
 ```

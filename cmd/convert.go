@@ -32,9 +32,25 @@ Example:
 	-> bases convert 101 -b 2 --to 10
 	-> 101₂ = 5₁₀`,
 	Run: func(cmd *cobra.Command, args []string) {
+
+		errorMessage := "\nThe parameter and flags -b and --to are required: \n" +
+						"\tbases convert [parameter] -b [int] --to [int]\n\n" +
+						"Example:\n \tbases convert 101 -b 2 --to 10 \n\n"+
+						"NOTE: the -b and --to flags must be grand than 1 \n\n"
+
+		if len(args) <= 0 {
+			fmt.Print(errorMessage)
+			return
+		}
+
 		//Get the flags
 		base, _ := cmd.Flags().GetInt("base")
 		to, _ := cmd.Flags().GetInt("to")
+
+		if base <= 1 || to <= 1 {
+			fmt.Print(errorMessage)
+			return
+		}
 
 		//Do the conversion of the bases
 		result := bases.ConvertBases(args[0], base, to)

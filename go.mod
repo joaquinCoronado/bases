@@ -1,4 +1,4 @@
-module bases-converter
+module bases
 
 go 1.13
 

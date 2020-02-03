@@ -2,6 +2,10 @@
 # Created by https://www.gitignore.io/api/go,jetbrains+all
 # Edit at https://www.gitignore.io/?templates=go,jetbrains+all
 
+
+.DS_Store
+
+
 ### Go ###
 # Binaries for programs and plugins
 *.exe

@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "bases-converter/cmd"
+import "bases/cmd"
 
 func main() {
   cmd.Execute()

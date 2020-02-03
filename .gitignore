@@ -2,9 +2,15 @@
 # Created by https://www.gitignore.io/api/go,jetbrains+all
 # Edit at https://www.gitignore.io/?templates=go,jetbrains+all
 
+### Ignore files with out extension ###
+#ignore all
+*
+#unignore folder
+!*/
+#unignore all file with dot at them
+!*.*
 
 .DS_Store
-
 
 ### Go ###
 # Binaries for programs and plugins

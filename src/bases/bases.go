@@ -109,8 +109,8 @@ func NumericValue(value string) int {
 	response := numeric[value]
 
 	if response == 0 {
-		test, _ := strconv.Atoi(value)
-		return test
+		response, _ = strconv.Atoi(value)
+		return response
 	}
 	return response
 }

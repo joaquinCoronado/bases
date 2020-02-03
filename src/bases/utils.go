@@ -1,12 +1,19 @@
 package bases
 
 import (
+	"bases/src/errors"
 	"math"
 	"strconv"
 	"strings"
 )
 
-func ConvertBases(number string, actualBase, destinationBase int) string{
+func ConvertBases(number string, actualBase, destinationBase int) (string, error){
+
+	//Validate symbols
+	err := ValidateSymbols(number, actualBase)
+	if err != nil {
+		return "", err
+	}
 
 	//Convert the number to base 10
 	decimal := ToDecimal(number, actualBase)
@@ -33,7 +40,7 @@ func ConvertBases(number string, actualBase, destinationBase int) string{
 	reverse := reverseArray(residues)
 
 	//add sub index of the resultant number
-	return reverse + SubIndex(destinationBase)
+	return reverse + SubIndex(destinationBase), nil
 }
 
 func ToDecimal( number string, base int ) float64 {
@@ -49,6 +56,37 @@ func ToDecimal( number string, base int ) float64 {
 	}
 
 	return float64(result)
+}
+
+func ValidateSymbols(number string, actualBase int) error {
+	symbols := []string {
+		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
+		"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+		"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W",
+		"X","Y","Z",
+	}
+
+	validSymbols := symbols[0:actualBase]
+
+	mapSymbols := make(map[string]int, len(validSymbols))
+	for _, v := range validSymbols {
+		mapSymbols[v] = 0
+	}
+
+	number = strings.ToUpper(number)
+
+	for _, v := range number {
+		_, ok := mapSymbols[string(v)]
+		if !ok {
+			return &errors.BasesError{
+				Number: number,
+				Base: actualBase,
+				ValidSymbols: validSymbols,
+			}
+		}
+	}
+
+	return nil
 }
 
 // https://github.com/golang/example/blob/master/stringutil/reverse.go

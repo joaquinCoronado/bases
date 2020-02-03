@@ -19,6 +19,7 @@ import (
 	"bases/src/bases"
 	"fmt"
 	"github.com/spf13/cobra"
+	"strings"
 )
 
 // convertCmd represents the convert command
@@ -43,7 +44,8 @@ Example:
 			return
 		}
 
-		//Get the flags
+		//Get the flags and parameters
+		number := strings.ToUpper(args[0])
 		base, _ := cmd.Flags().GetInt("base")
 		to, _ := cmd.Flags().GetInt("to")
 
@@ -53,10 +55,14 @@ Example:
 		}
 
 		//Do the conversion of the bases
-		result := bases.ConvertBases(args[0], base, to)
+		result, err := bases.ConvertBases(number, base, to)
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
 
 		//Print the result
-		fmt.Println( args[0] + bases.SubIndex(base) + " = " + result)
+		fmt.Println(number + bases.SubIndex(base) + " = " + result)
 	},
 }
 

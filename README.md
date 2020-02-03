@@ -2,6 +2,8 @@
 
 Convert any number with base between 2 to 30 to another number at the same bases range. 
 
+![alt text](img/bases-example.png)
+
 ## Getting Started
 
 Only install Go 1.13 or lates version and clone out of the GOPATH.
@@ -30,7 +32,7 @@ Test the convert command executing the done build.
 -> ./bases convert 101 -b 2 --to 10
 ```
 
-#### Optional ( I prefer this )`
+#### Optional ( I prefer this )
 
 Add of the path the location of the done build; in the file `.bash_profile` or `.zshrc` paste
 the next line with the path of the done build

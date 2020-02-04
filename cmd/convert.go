@@ -54,6 +54,11 @@ Example:
 			return
 		}
 
+		if base > 30 || to > 30 {
+			fmt.Print("bases not supported, use bases only between 2 and 30 ")
+			return
+		}
+
 		//Do the conversion of the bases
 		result, err := bases.ConvertBases(number, base, to)
 		if err != nil {
